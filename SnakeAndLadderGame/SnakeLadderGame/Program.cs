@@ -11,7 +11,7 @@ board.noOfTiles=72;
 
 var player= new Pawn();
 
-int actualPosition=0;
+int actualPosition=1;
 
 List <Snake> snakes = new List<Snake>();
 snakes.Add(new Snake(16,6));
@@ -34,7 +34,7 @@ while(actualPosition<72)
 
     Console.WriteLine($"Player Rolled a dice and a no = {diceNumber}");
 
-    var playerNewCalculatedPosition= player.MovePlayer(diceNumber);
+    var playerNewCalculatedPosition= player.MovePlayer(diceNumber,actualPosition);
     actualPosition = playerNewCalculatedPosition;
 
     foreach (var snk in snakes)
@@ -42,7 +42,7 @@ while(actualPosition<72)
         if (snk.currentPosition== playerNewCalculatedPosition)
         {
             actualPosition= snk.targetPosition;
-           Console.WriteLine($"ACtual Position of player after snake bite = {actualPosition}");
+            Console.WriteLine($"Player is on snake tile, its CurrentPosition ={snk.currentPosition} after snake bite new position= {actualPosition}");
             break;
         }
     }
@@ -53,19 +53,19 @@ while(actualPosition<72)
         if (ladd.currentPosition == playerNewCalculatedPosition)
         {
             actualPosition = ladd.targetPosition;
-            Console.WriteLine($"ACtual Position of player after reaching ladder = {actualPosition}");
+            Console.WriteLine($"Player need to take ladder, its CurrentPosition ={ladd.currentPosition} and new position= {actualPosition}");
             break;
         }
     }
 
 
-
-    if (actualPosition == 72)
+    if (actualPosition >= 72)
     {
+        Console.WriteLine($"Player is at Winning Position = {actualPosition}");
         break;
     }
       
-    Thread.Sleep(1000);
+    
 }
 
 

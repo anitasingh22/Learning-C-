@@ -10,8 +10,9 @@ namespace SnakeLadderGame
     {
         public int position { get; set; } = 1;
 
-        public int MovePlayer(int diceNo)
+        public int MovePlayer(int diceNo , int actualposition)
         {
+            position = actualposition;
             var newCalculatedPosition=position + diceNo;
             return newCalculatedPosition;
         }
